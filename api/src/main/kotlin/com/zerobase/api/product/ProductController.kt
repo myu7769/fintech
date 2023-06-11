@@ -17,11 +17,11 @@ class ProductController(
 ) {
 
     @GetMapping("product/{organizationCode}")
-    fun getReviewData(@PathVariable organizationCode : Organization) : ResponseEntity<ProductDto.ProductResponseDto> {
+    fun getReviewData(@PathVariable organizationCode : String) : ResponseEntity<ProductDto.ProductResponseDto> {
 
 
         return ResponseEntity.ok(
-            productListServiceImpl.getProductInfo(organizationCode.toString())
+            productListServiceImpl.getProductInfo(organizationCode)
         )
     }
 
