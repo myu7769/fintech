@@ -11,7 +11,7 @@ class EncryptComponent {
 
 
     companion object {
-        private const val secretKey = "12312312313121231"
+        private const val secretKey = "12345678901234561234567890123456"
     }
 
     private val encoder = Base64.getEncoder()

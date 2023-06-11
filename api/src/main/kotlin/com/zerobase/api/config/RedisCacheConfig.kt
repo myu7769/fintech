@@ -1,4 +1,3 @@
-/*
 package com.zerobase.api.config
 
 
@@ -31,4 +30,4 @@ class RedisCacheConfig {
             .cacheDefaults(redisCacheConfig)
             .build()
     }
-}*/
+}
