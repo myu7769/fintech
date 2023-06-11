@@ -1,6 +1,8 @@
 package com.zerobase.api.loan.request
 
+
 import com.zerobase.api.loan.encrypt.EncryptComponent
+import com.zerobase.domain.domain.UserInfo
 import com.zerobase.domain.repository.UserInfoRepository
 import com.zerobase.kafka.enum.KafkaTopic
 import com.zerobase.kafka.producer.LoanRequestSender
@@ -17,7 +19,7 @@ class LoanRequestServiceImpl(
 
 ) : LoanRequestService {
 
-    override fun loanRequestMain(loanRequestInputDto: LoanRequestDto.LoanRequestInputDto): LoanRequestDto.LoanRequestResponseDto {
+    override fun loanRequestMain(loanRequestInputDto: LoanRequestDto.LoanRequestInputDto): UserRequestDto.InformationResponseDto {
 
         val userKey = generateKey.generateUserKey()
 
@@ -30,7 +32,9 @@ class LoanRequestServiceImpl(
 
         loanRequestReview(userInfoDto)
 
-        return LoanRequestDto.LoanRequestResponseDto(userKey)
+        return UserRequestDto.InformationResponseDto(
+            UserRequestDto.InformationDto(userKey),
+            ResponseStatus.SUCCESS.code, ResponseStatus.SUCCESS.message)
     }
 
     override fun saveUserInfo(userInfoDto: UserInfoDto) =
@@ -42,5 +46,16 @@ class LoanRequestServiceImpl(
             KafkaTopic.LOAN_REQUEST,
             userInfoDto.toLoanRequestKafkaDto()
         )
+    }
+
+    override fun getUserInfo(userKey: String): UserRequestDto.UserRequestResponseDto {
+
+        val userInfoDto = userInfoRepository.findByUserKey(userKey)
+
+
+        return UserRequestDto.UserRequestResponseDto(
+            UserRequestDto.UserDataDto(userInfoDto.userKey, userInfoDto.userRegistrationNumber),
+            ResponseStatus.SUCCESS.code, ResponseStatus.SUCCESS.message)
+
     }
 }

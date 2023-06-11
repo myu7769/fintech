@@ -1,5 +1,6 @@
 package com.zerobase.api.loan.request
 
+
 class LoanRequestDto {
     data class LoanRequestInputDto(
         val userName: String,
@@ -16,5 +17,7 @@ class LoanRequestDto {
 
     data class LoanRequestResponseDto(
         val userKey: String
+
+
     )
 }

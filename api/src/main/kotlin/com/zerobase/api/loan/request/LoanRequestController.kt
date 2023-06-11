@@ -1,24 +1,29 @@
 package com.zerobase.api.loan.request
 
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/fintech/api/v1")
+@RequestMapping("/fintech/v1/user")
 class LoanRequestController(
     private val loanRequestServiceImpl: LoanRequestServiceImpl
 ) {
 
-    @PostMapping("/request")
+    @PostMapping("/information")
     fun loanRequest(
         @RequestBody loanRequestInputDto: LoanRequestDto.LoanRequestInputDto
-    ): ResponseEntity<LoanRequestDto.LoanRequestResponseDto> {
+    ): ResponseEntity<UserRequestDto.InformationResponseDto> {
 
         return ResponseEntity.ok(
             loanRequestServiceImpl.loanRequestMain(loanRequestInputDto)
+        )
+    }
+
+    @GetMapping("private-info/{userKey}")
+    fun getReviewData(@PathVariable userKey : String) : ResponseEntity<UserRequestDto.UserRequestResponseDto> {
+
+        return ResponseEntity.ok(
+            loanRequestServiceImpl.getUserInfo(userKey)
         )
     }
 }
