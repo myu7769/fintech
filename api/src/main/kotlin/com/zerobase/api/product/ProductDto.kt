@@ -34,4 +34,9 @@ class ProductDto(
         val productNumber : String
     )
 
+    data class SuccessDto(
+            val responseCode : String,
+            val responseMessage : String
+    )
+
 }

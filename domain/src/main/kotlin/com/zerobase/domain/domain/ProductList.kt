@@ -12,10 +12,10 @@ import javax.persistence.Table
 @Table(name = "PRODUCT_LIST")
 class ProductList(
     @Column(name = "org_cd")
-    val originalCd: String,
+    val organizationCode: String,
 
     @Column(name = "prod_cd")
-    val productCd: String
+    val productCode: String
 
 ) {
     @Id

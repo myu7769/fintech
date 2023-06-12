@@ -12,19 +12,19 @@ import javax.persistence.Table
 @Table(name = "PRODUCT_INFO")
 class ProductInfo(
     @Column(name = "org_cd")
-    val originalCd: String,
+    val organizationCode: String,
 
     @Column(name = "prod_cd")
-    val productCd: String,
+    val productCode: String,
 
     @Column(name = "prod_nm")
-    val productNumber: String,
+    val productName: String,
 
     @Column(name = "prod_min_intr")
-    val productMin: Double,
+    val productMinimumInterest: Double,
 
     @Column(name = "prod_max_intr")
-    val productMax: Double
+    val productMaximumInterest: Double
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

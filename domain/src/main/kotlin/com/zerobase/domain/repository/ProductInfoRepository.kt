@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository
 
 
 interface ProductInfoRepository : JpaRepository<ProductInfo, Long> {
-    fun findByoriginalCd(organization: String) : ProductInfo?
+    fun findByorganizationCode(organization: String) : ProductInfo?
 
 
 }
